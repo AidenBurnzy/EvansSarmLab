@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVANS PEPTIDES</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="age-gate hidden" role="dialog" aria-modal="true" aria-labelledby="age-gate-title">
+        <div class="age-gate-content">
+            <h2 id="age-gate-title">Age Verification</h2>
+            <p>Please confirm that you are 21 years of age or older to continue.</p>
+            <div class="age-gate-actions">
+                <button type="button" id="age-gate-yes" class="age-gate-button primary">Yes, I am 21 or older</button>
+                <button type="button" id="age-gate-no" class="age-gate-button">No</button>
+            </div>
+            <p class="age-gate-message hidden" role="alert">You must be 21 or older to enter this site.</p>
+        </div>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">EVANS PEPTIDES</div>
+            <ul class="nav-menu">
+                <li><a href="#new">OUR RESEARCH</a></li>
+                <li><a href="#women">ORDER</a></li>
+                <li><a href="#men">CONTACT</a></li>
+            </ul>
+            <div class="nav-right">
+                <a href="#search" class="nav-icon">SEARCH</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Carousel -->
+    <section class="carousel-section">
+        <div class="carousel">
+            <div class="carousel-track">
+                <div class="carousel-slide active">
+                    <div class="slide-content">
+                        <h1 class="hero-title">PEPTIDES</h1>
+                        <a href="#shop" class="hero-cta">EXPLORE COLLECTION</a>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="slide-content">
+                        <h1 class="hero-title">NEW ESSENTIALS</h1>
+                        <a href="#shop" class="hero-cta">SHOP NOW</a>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="slide-content">
+                        <h1 class="hero-title">SIGNATURE PIECES</h1>
+                        <a href="#shop" class="hero-cta">DISCOVER MORE</a>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn prev" aria-label="Previous">‹</button>
+            <button class="carousel-btn next" aria-label="Next">›</button>
+            <div class="carousel-dots"></div>
+        </div>
+    </section>
+
+    <!-- Shop Grid -->
+    <section class="shop-section">
+        <h2 class="section-title">FEATURED PEPTIDES</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="placeholder-img">PEPTIDE IMAGE</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">BPC-157</h3>
+                    <p class="product-price">$210</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="placeholder-img">PEPTIDE IMAGE</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">TB-500</h3>
+                    <p class="product-price">$195</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="placeholder-img">PEPTIDE IMAGE</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">CJC-1295</h3>
+                    <p class="product-price">$245</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="placeholder-img">PEPTIDE IMAGE</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">IPAMORELIN</h3>
+                    <p class="product-price">$180</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="placeholder-img">PEPTIDE IMAGE</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">SELANK</h3>
+                    <p class="product-price">$160</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="placeholder-img">PEPTIDE IMAGE</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">SEMAGLUTIDE</h3>
+                    <p class="product-price">$285</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>CUSTOMER SERVICE</h4>
+                <ul>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#shipping">Shipping</a></li>
+                    <li><a href="#returns">Returns</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>ABOUT</h4>
+                <ul>
+                    <li><a href="#company">Company</a></li>
+                    <li><a href="#stores">Stores</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>LEGAL</h4>
+                <ul>
+                    <li><a href="#terms">Terms & Conditions</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>NEWSLETTER</h4>
+                <p>Subscribe to receive updates</p>
+                <input type="email" placeholder="EMAIL ADDRESS" class="newsletter-input">
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 LUXURY FASHION. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
