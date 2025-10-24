@@ -80,7 +80,7 @@ class Carousel {
     }
 }
 
-function initResearchNotice() {
+function initResearchNotice(onContinue) {
     const notice = document.querySelector('.research-notice');
     if (!notice) {
         return;
@@ -107,6 +107,9 @@ function initResearchNotice() {
 
     continueBtn.addEventListener('click', () => {
         closeNotice();
+        if (typeof onContinue === 'function') {
+            onContinue();
+        }
     });
 
     exitBtn.addEventListener('click', () => {
@@ -114,6 +117,46 @@ function initResearchNotice() {
         continueBtn.disabled = true;
         exitBtn.disabled = true;
     });
+}
+
+function initAgeGate() {
+    const ageGate = document.querySelector('.age-gate');
+    if (!ageGate) {
+        return null;
+    }
+
+    const yesBtn = document.getElementById('age-verify-yes');
+    const noBtn = document.getElementById('age-verify-no');
+    const message = ageGate.querySelector('.age-gate-message');
+
+    if (!yesBtn || !noBtn || !message) {
+        return null;
+    }
+
+    const closeGate = () => {
+        ageGate.classList.add('hidden');
+        document.body.classList.remove('notice-locked');
+    };
+
+    const openGate = () => {
+        ageGate.classList.remove('hidden');
+        document.body.classList.add('notice-locked');
+        message.classList.add('hidden');
+        yesBtn.disabled = false;
+        noBtn.disabled = false;
+    };
+
+    yesBtn.addEventListener('click', () => {
+        closeGate();
+    });
+
+    noBtn.addEventListener('click', () => {
+        message.classList.remove('hidden');
+        yesBtn.disabled = true;
+        noBtn.disabled = true;
+    });
+
+    return openGate;
 }
 
 // Product card interactions
@@ -209,7 +252,8 @@ function initNavbarScroll() {
 
 // Initialize everything when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    initResearchNotice();
+    const openAgeGate = initAgeGate();
+    initResearchNotice(openAgeGate);
     // Initialize carousel
     new Carousel();
     
