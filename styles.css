@@ -106,8 +106,8 @@ body.age-locked {
 }
 
 .nav-container {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     padding: 20px 40px;
     max-width: 1600px;
@@ -115,15 +115,20 @@ body.age-locked {
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
-    letter-spacing: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 200px;
+    width: auto;
 }
 
 .nav-menu {
     display: flex;
     list-style: none;
     gap: 40px;
+    justify-self: center;
 }
 
 .nav-menu a {
@@ -142,6 +147,7 @@ body.age-locked {
 .nav-right {
     display: flex;
     gap: 30px;
+    justify-self: end;
 }
 
 .nav-icon {
