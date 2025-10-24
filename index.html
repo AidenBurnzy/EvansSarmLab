@@ -7,27 +7,29 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="age-gate hidden" role="dialog" aria-modal="true" aria-labelledby="age-gate-title">
-        <div class="age-gate-content">
-            <h2 id="age-gate-title">Age Verification</h2>
-            <p>Please confirm that you are 21 years of age or older to continue.</p>
-            <div class="age-gate-actions">
-                <button type="button" id="age-gate-yes" class="age-gate-button primary">Yes, I am 21 or older</button>
-                <button type="button" id="age-gate-no" class="age-gate-button">No</button>
+    <!-- Professional Notice for Research Purposes -->
+    <div class="research-notice hidden" role="dialog" aria-modal="true" aria-labelledby="research-notice-title">
+        <div class="notice-content">
+            <h2 id="research-notice-title">Research Laboratory Notice</h2>
+            <p>This site contains information about peptides for research and educational purposes only. Products are intended for laboratory research use by qualified professionals.</p>
+            <div class="notice-actions">
+                <button type="button" id="notice-continue" class="notice-button primary">I Understand - Continue</button>
+                <button type="button" id="notice-exit" class="notice-button">Exit</button>
             </div>
-            <p class="age-gate-message hidden" role="alert">You must be 21 or older to enter this site.</p>
+            <p class="notice-message hidden" role="alert">This site is intended for research professionals only.</p>
         </div>
     </div>
+    
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <a class="logo" href="/">
-                <img src="logo1.png" alt="Evans Peptides" />
+                <img src="logo1.png" alt="VitaSyn Labs" />
             </a>
             <ul class="nav-menu">
-                <li><a href="#new">OUR RESEARCH</a></li>
-                <li><a href="#women">ORDER</a></li>
-                <li><a href="#men">CONTACT</a></li>
+                <li><a href="#research">OUR RESEARCH</a></li>
+                <li><a href="#order">ORDER</a></li>
+                <li><a href="#contact">CONTACT</a></li>
             </ul>
             <div class="nav-right">
                 <a href="#search" class="nav-icon">SEARCH</a>
@@ -41,20 +43,20 @@
             <div class="carousel-track">
                 <div class="carousel-slide active">
                     <div class="slide-content">
-                        <h1 class="hero-title">PEPTIDES</h1>
-                        <a href="#shop" class="hero-cta">EXPLORE COLLECTION</a>
+                        <h1 class="hero-title">RESEARCH PEPTIDES</h1>
+                        <a href="#shop" class="hero-cta">VIEW CATALOG</a>
                     </div>
                 </div>
                 <div class="carousel-slide">
                     <div class="slide-content">
-                        <h1 class="hero-title">NEW ESSENTIALS</h1>
-                        <a href="#shop" class="hero-cta">SHOP NOW</a>
+                        <h1 class="hero-title">LABORATORY GRADE</h1>
+                        <a href="#shop" class="hero-cta">BROWSE PRODUCTS</a>
                     </div>
                 </div>
                 <div class="carousel-slide">
                     <div class="slide-content">
-                        <h1 class="hero-title">SIGNATURE PIECES</h1>
-                        <a href="#shop" class="hero-cta">DISCOVER MORE</a>
+                        <h1 class="hero-title">SCIENTIFIC SOLUTIONS</h1>
+                        <a href="#shop" class="hero-cta">LEARN MORE</a>
                     </div>
                 </div>
             </div>
@@ -66,7 +68,7 @@
 
     <!-- Shop Grid -->
     <section class="shop-section">
-        <h2 class="section-title">FEATURED PEPTIDES</h2>
+        <h2 class="section-title">RESEARCH CATALOG</h2>
         <div class="product-grid">
             <div class="product-card">
                 <div class="product-image">
@@ -159,7 +161,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 LUXURY FASHION. ALL RIGHTS RESERVED.</p>
+            <p>&copy; 2025 VITASYN RESEARCH LABORATORIES. ALL RIGHTS RESERVED.</p>
         </div>
     </footer>
 

@@ -16,11 +16,11 @@ body {
     display: none !important;
 }
 
-body.age-locked {
+body.notice-locked {
     overflow: hidden;
 }
 
-.age-gate {
+.research-notice {
     position: fixed;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.85);
@@ -31,10 +31,10 @@ body.age-locked {
     z-index: 2000;
 }
 
-.age-gate-content {
+.notice-content {
     background-color: #fff;
     color: #000;
-    max-width: 420px;
+    max-width: 500px;
     width: 100%;
     text-align: center;
     padding: 40px 30px;
@@ -42,19 +42,20 @@ body.age-locked {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
 }
 
-.age-gate-content h2 {
+.notice-content h2 {
     font-size: 24px;
     letter-spacing: 2px;
     margin-bottom: 15px;
 }
 
-.age-gate-content p {
+.notice-content p {
     font-size: 14px;
     letter-spacing: 1px;
     margin-bottom: 25px;
+    line-height: 1.5;
 }
 
-.age-gate-actions {
+.notice-actions {
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -62,7 +63,7 @@ body.age-locked {
     flex-wrap: wrap;
 }
 
-.age-gate-button {
+.notice-button {
     padding: 12px 24px;
     border: 1px solid #000;
     background-color: transparent;
@@ -71,31 +72,31 @@ body.age-locked {
     font-size: 12px;
     cursor: pointer;
     transition: all 0.3s;
-    min-width: 140px;
+    min-width: 160px;
 }
 
-.age-gate-button.primary {
+.notice-button.primary {
     background-color: #000;
     color: #fff;
 }
 
-.age-gate-button:hover:not(:disabled) {
+.notice-button:hover:not(:disabled) {
     background-color: #000;
     color: #fff;
 }
 
-.age-gate-button:disabled {
+.notice-button:disabled {
     opacity: 0.4;
     cursor: not-allowed;
 }
 
-.age-gate-message {
+.notice-message {
     color: #b00020;
     font-size: 13px;
     letter-spacing: 0.5px;
 }
 
-/* Navigation */
+/* Navigation - Fixed Issues */
 .navbar {
     position: fixed;
     top: 0;
@@ -106,10 +107,10 @@ body.age-locked {
 }
 
 .nav-container {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
+    padding: 10px 40px;
     max-width: 1600px;
     margin: 0 auto;
 }
@@ -117,10 +118,11 @@ body.age-locked {
 .logo {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .logo img {
-    height: 200px;
+    height: 100px;
     width: auto;
 }
 
@@ -128,7 +130,7 @@ body.age-locked {
     display: flex;
     list-style: none;
     gap: 40px;
-    justify-self: center;
+    margin: 0 auto;
 }
 
 .nav-menu a {
@@ -147,7 +149,7 @@ body.age-locked {
 .nav-right {
     display: flex;
     gap: 30px;
-    justify-self: end;
+    flex-shrink: 0;
 }
 
 .nav-icon {
@@ -162,9 +164,9 @@ body.age-locked {
     opacity: 0.6;
 }
 
-/* Carousel Section */
+/* Carousel Section - Fixed spacing */
 .carousel-section {
-    margin-top: 80px;
+    margin-top: 70px;
     height: 70vh;
     position: relative;
 }
@@ -440,6 +442,10 @@ body.age-locked {
 }
 
 @media (max-width: 768px) {
+    .nav-container {
+        padding: 10px 20px;
+    }
+
     .nav-menu {
         display: none;
     }

@@ -80,39 +80,39 @@ class Carousel {
     }
 }
 
-function initAgeGate() {
-    const gate = document.querySelector('.age-gate');
-    if (!gate) {
+function initResearchNotice() {
+    const notice = document.querySelector('.research-notice');
+    if (!notice) {
         return;
     }
 
-    const yesBtn = document.getElementById('age-gate-yes');
-    const noBtn = document.getElementById('age-gate-no');
-    const message = gate.querySelector('.age-gate-message');
+    const continueBtn = document.getElementById('notice-continue');
+    const exitBtn = document.getElementById('notice-exit');
+    const message = notice.querySelector('.notice-message');
 
-    if (!yesBtn || !noBtn || !message) {
+    if (!continueBtn || !exitBtn || !message) {
         return;
     }
 
-    gate.classList.remove('hidden');
-    document.body.classList.add('age-locked');
+    notice.classList.remove('hidden');
+    document.body.classList.add('notice-locked');
     message.classList.add('hidden');
-    yesBtn.disabled = false;
-    noBtn.disabled = false;
+    continueBtn.disabled = false;
+    exitBtn.disabled = false;
 
-    const closeGate = () => {
-        gate.classList.add('hidden');
-        document.body.classList.remove('age-locked');
+    const closeNotice = () => {
+        notice.classList.add('hidden');
+        document.body.classList.remove('notice-locked');
     };
 
-    yesBtn.addEventListener('click', () => {
-        closeGate();
+    continueBtn.addEventListener('click', () => {
+        closeNotice();
     });
 
-    noBtn.addEventListener('click', () => {
+    exitBtn.addEventListener('click', () => {
         message.classList.remove('hidden');
-        yesBtn.disabled = true;
-        noBtn.disabled = true;
+        continueBtn.disabled = true;
+        exitBtn.disabled = true;
     });
 }
 
@@ -209,7 +209,7 @@ function initNavbarScroll() {
 
 // Initialize everything when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    initAgeGate();
+    initResearchNotice();
     // Initialize carousel
     new Carousel();
     
@@ -219,5 +219,5 @@ document.addEventListener('DOMContentLoaded', function() {
     initNewsletter();
     initNavbarScroll();
     
-    console.log('Luxury Fashion Website Loaded');
+    console.log('Research Laboratory Website Loaded');
 });
