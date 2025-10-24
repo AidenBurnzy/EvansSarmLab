@@ -221,6 +221,13 @@ body.notice-locked {
     background-repeat: no-repeat;
 }
 
+.carousel-slide.slide-3 {
+    background-image: url("slide3.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .carousel-slide.active {
     opacity: 1;
 }
