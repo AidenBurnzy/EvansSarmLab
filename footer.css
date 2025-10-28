@@ -1,0 +1,279 @@
+/* Footer Styles */
+.peptide-footer {
+    background: linear-gradient(135deg, #1a2b5e 0%, #2d4a8f 100%);
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+/* Main Footer Grid */
+.footer-main {
+    padding: 60px 40px;
+}
+
+.footer-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+}
+
+.footer-column h3 {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.footer-column p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #e8e8e8;
+}
+
+/* Quick Links */
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: #e8e8e8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: #ffd700;
+}
+
+/* Shipping Info */
+.shipping-info p {
+    font-size: 13px;
+    margin-bottom: 10px;
+    color: #e8e8e8;
+}
+
+.shipping-hours,
+.shipping-email,
+.shipping-phone,
+.shipping-address {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Payment Methods */
+.payment-methods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.payment-methods img {
+    height: 28px;
+    width: auto;
+    background: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.payment-icon {
+    background: white;
+    color: #000;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.payment-icon.btc {
+    font-size: 18px;
+    padding: 4px 10px;
+}
+
+.payment-icon.zelle {
+    color: #6d1ed4;
+}
+
+.payment-icon.echeck {
+    color: #0066cc;
+}
+
+/* Newsletter */
+.newsletter-text {
+    font-size: 13px;
+    color: #ffd700;
+    margin-bottom: 15px;
+}
+
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.newsletter-form input {
+    padding: 12px;
+    border: 1px solid #ffffff;
+    background: transparent;
+    color: #ffffff;
+    font-size: 13px;
+    border-radius: 4px;
+}
+
+.newsletter-form input::placeholder {
+    color: #cccccc;
+}
+
+.newsletter-form button {
+    padding: 12px 24px;
+    background: #ffd700;
+    border: none;
+    color: #1a2b5e;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.newsletter-form button:hover {
+    background: #ffed4e;
+}
+
+/* Social Links */
+.social-links h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    transition: all 0.3s;
+}
+
+.social-icons a:hover {
+    background: #ffd700;
+    color: #1a2b5e;
+}
+
+.social-icons svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Legal Section */
+.footer-legal {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 40px;
+}
+
+.legal-content {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.legal-content h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.legal-content p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #e8e8e8;
+}
+
+.legal-content em {
+    font-style: italic;
+}
+
+/* Copyright */
+.footer-bottom {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 12px;
+    color: #cccccc;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-main {
+        padding: 40px 20px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .footer-legal {
+        padding: 30px 20px;
+    }
+
+    .payment-methods {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-column h3 {
+        font-size: 14px;
+    }
+
+    .footer-column p,
+    .footer-column ul li a,
+    .shipping-info p {
+        font-size: 12px;
+    }
+
+    .payment-methods img {
+        height: 24px;
+    }
+
+    .social-icons a {
+        width: 36px;
+        height: 36px;
+    }
+}

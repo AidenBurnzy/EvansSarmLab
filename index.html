@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EVANS PEPTIDES</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="footer.css">
 </head>
 <body>
     <!-- Professional Notice for Research Purposes -->
@@ -141,43 +142,21 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4>CUSTOMER SERVICE</h4>
-                <ul>
-                    <li><a href="#contact">Contact Us</a></li>
-                    <li><a href="#shipping">Shipping</a></li>
-                    <li><a href="#returns">Returns</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>ABOUT</h4>
-                <ul>
-                    <li><a href="#company">Company</a></li>
-                    <li><a href="#stores">Stores</a></li>
-                    <li><a href="#careers">Careers</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>LEGAL</h4>
-                <ul>
-                    <li><a href="#terms">Terms & Conditions</a></li>
-                    <li><a href="#privacy">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>NEWSLETTER</h4>
-                <p>Subscribe to receive updates</p>
-                <input type="email" placeholder="EMAIL ADDRESS" class="newsletter-input">
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 VITASYN RESEARCH LABORATORIES. ALL RIGHTS RESERVED.</p>
-        </div>
-    </footer>
+
+    <div id="footer-container"></div>
 
     <script src="script.js"></script>
+        <script>
+        // Dynamically load footer.html into the footer-container
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(html => {
+                // Extract only the <footer>...</footer> part if footer.html is a full HTML document
+                const temp = document.createElement('div');
+                temp.innerHTML = html;
+                const footer = temp.querySelector('footer');
+                document.getElementById('footer-container').appendChild(footer);
+            });
+        </script>
 </body>
 </html>
