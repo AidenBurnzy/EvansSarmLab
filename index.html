@@ -6,6 +6,7 @@
     <title>EVANS PEPTIDES</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="navbar.css">
 </head>
 <body>
     <!-- Professional Notice for Research Purposes -->
@@ -35,21 +36,7 @@
     </div>
     
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a class="logo" href="/">
-                <img src="logo1.png" alt="VitaSyn Labs" />
-            </a>
-            <ul class="nav-menu">
-                <li><a href="#research">OUR RESEARCH</a></li>
-                <li><a href="#order">ORDER</a></li>
-                <li><a href="#contact">CONTACT</a></li>
-            </ul>
-            <div class="nav-right">
-                <a href="#search" class="nav-icon">SEARCH</a>
-            </div>
-        </div>
-    </nav>
+    <div id="navbar-container"></div>
 
     <!-- Hero Carousel -->
     <section class="carousel-section">
@@ -146,6 +133,17 @@
     <div id="footer-container"></div>
 
     <script src="script.js"></script>
+        <script>
+        // Dynamically load navbar.html into the navbar-container
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                const temp = document.createElement('div');
+                temp.innerHTML = html;
+                const navbar = temp.querySelector('nav');
+                document.getElementById('navbar-container').appendChild(navbar);
+            });
+        </script>
         <script>
         // Dynamically load footer.html into the footer-container
         fetch('footer.html')
