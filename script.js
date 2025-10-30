@@ -41,7 +41,6 @@ class Carousel {
             this.startAutoplay();
         });
 
-        // Pause autoplay on hover
         const carousel = document.querySelector('.carousel');
         carousel.addEventListener('mouseenter', () => this.stopAutoplay());
         carousel.addEventListener('mouseleave', () => this.startAutoplay());
@@ -82,17 +81,13 @@ class Carousel {
 
 function initResearchNotice(onContinue) {
     const notice = document.querySelector('.research-notice');
-    if (!notice) {
-        return;
-    }
+    if (!notice) return;
 
     const continueBtn = document.getElementById('notice-continue');
     const exitBtn = document.getElementById('notice-exit');
     const message = notice.querySelector('.notice-message');
 
-    if (!continueBtn || !exitBtn || !message) {
-        return;
-    }
+    if (!continueBtn || !exitBtn || !message) return;
 
     notice.classList.remove('hidden');
     document.body.classList.add('notice-locked');
@@ -121,17 +116,13 @@ function initResearchNotice(onContinue) {
 
 function initAgeGate() {
     const ageGate = document.querySelector('.age-gate');
-    if (!ageGate) {
-        return null;
-    }
+    if (!ageGate) return null;
 
     const yesBtn = document.getElementById('age-verify-yes');
     const noBtn = document.getElementById('age-verify-no');
     const message = ageGate.querySelector('.age-gate-message');
 
-    if (!yesBtn || !noBtn || !message) {
-        return null;
-    }
+    if (!yesBtn || !noBtn || !message) return null;
 
     const closeGate = () => {
         ageGate.classList.add('hidden');
@@ -159,19 +150,6 @@ function initAgeGate() {
     return openGate;
 }
 
-// Product card interactions
-function initProductCards() {
-    const productCards = document.querySelectorAll('.product-card');
-    
-    productCards.forEach(card => {
-        card.addEventListener('click', function() {
-            console.log('Product clicked:', this.querySelector('.product-name').textContent);
-            // Add product detail navigation or modal functionality here
-        });
-    });
-}
-
-// Smooth scroll for navigation links
 function initSmoothScroll() {
     const links = document.querySelectorAll('a[href^="#"]');
     
@@ -195,46 +173,32 @@ function initSmoothScroll() {
     });
 }
 
-// Newsletter form handling
 function initNewsletter() {
-    const newsletterInput = document.querySelector('.newsletter-input');
+    const newsletterForm = document.querySelector('.newsletter-form');
     
-    if (newsletterInput) {
-        newsletterInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const email = this.value.trim();
-                if (email && validateEmail(email)) {
-                    console.log('Newsletter subscription:', email);
-                    this.value = '';
-                    alert('Thank you for subscribing!');
-                } else {
-                    alert('Please enter a valid email address');
-                }
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = this.querySelector('input[type="email"]');
+            const email = emailInput.value.trim();
+            
+            if (email && validateEmail(email)) {
+                console.log('Newsletter subscription:', email);
+                emailInput.value = '';
+                alert('Thank you for subscribing!');
+            } else {
+                alert('Please enter a valid email address');
             }
         });
     }
 }
 
-// Email validation
 function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
 }
 
-// Shopping bag counter (placeholder)
-let bagCount = 0;
-
-function updateBagCount(count) {
-    bagCount = count;
-    const bagElement = document.querySelector('.nav-icon[href="#cart"]');
-    if (bagElement) {
-        bagElement.textContent = `BAG (${bagCount})`;
-    }
-}
-
-// Navbar scroll effect
 function initNavbarScroll() {
-    let lastScroll = 0;
     const navbar = document.querySelector('.navbar');
     
     window.addEventListener('scroll', () => {
@@ -245,92 +209,94 @@ function initNavbarScroll() {
         } else {
             navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
         }
-        
-        lastScroll = currentScroll;
     });
 }
 
-// Initialize everything when DOM is ready
-// Initialize everything when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-    const openAgeGate = initAgeGate();
-    initResearchNotice(openAgeGate);
-    // Initialize carousel
-    new Carousel();
-    
-    // Load DropShip products
-    loadDropShipProducts();
-    
-    // Initialize other features
-    initSmoothScroll();
-    initNewsletter();
-    initNavbarScroll();
-    
-    console.log('Research Laboratory Website Loaded');
-});
+// WooCommerce API Integration
+const WOOCOMMERCE_URL = 'https://vitasynlabs.com';
+const CONSUMER_KEY = 'ck_a4b4226fbbdff41fd6d7faba18a10b3ebc3004cb';
+const CONSUMER_SECRET = 'cs_30cb119423d871d615d87ac96c23420dad3c8e1e';
 
-// DropShipEazy API Integration
-const DROPSHIP_API_KEY = 'dss_10ce498615f6e6d677a2a13af5df18a1ed890be2bf35875b6f521050d0a15d29';
-
-async function loadDropShipProducts() {
+async function loadWooCommerceProducts() {
     try {
-        const response = await fetch('https://api.dropshipeazy.com/v1/products', {
-            headers: {
-                'Authorization': `Bearer ${DROPSHIP_API_KEY}`
-            }
-        });
+        console.log('Fetching products from WooCommerce...');
+        
+        const url = `${WOOCOMMERCE_URL}/wp-json/wc/v3/products?consumer_key=${CONSUMER_KEY}&consumer_secret=${CONSUMER_SECRET}&per_page=50&status=publish`;
+        
+        const response = await fetch(url);
 
         if (!response.ok) {
             throw new Error(`API Error: ${response.status}`);
         }
 
-        const data = await response.json();
-        console.log('Products loaded:', data);
+        const products = await response.json();
+        console.log('Products loaded:', products);
         
-        // Display the products
-        displayDropShipProducts(data.products || data);
+        if (products && products.length > 0) {
+            displayWooCommerceProducts(products);
+        } else {
+            console.log('No products found');
+        }
     } catch (error) {
         console.error('Error loading products:', error);
-        // Keep placeholder products if API fails
     }
 }
 
-function displayDropShipProducts(products) {
+function displayWooCommerceProducts(products) {
     const productGrid = document.querySelector('.product-grid');
     
-    if (!products || products.length === 0) {
-        console.log('No products found');
+    if (!productGrid) {
+        console.error('Product grid not found');
         return;
     }
 
-    // Clear existing placeholder products
     productGrid.innerHTML = '';
 
-    // Add each product from the API
     products.forEach(product => {
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
         
+        const imageUrl = product.images && product.images.length > 0 
+            ? product.images[0].src 
+            : null;
+        
+        const price = product.price || '0.00';
+        
         productCard.innerHTML = `
             <div class="product-image">
-                ${product.image ? 
-                    `<img src="${product.image}" alt="${product.name || 'Product'}" style="width: 100%; height: 100%; object-fit: cover;">` :
+                ${imageUrl ? 
+                    `<img src="${imageUrl}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;">` :
                     `<div class="placeholder-img">PEPTIDE IMAGE</div>`
                 }
             </div>
             <div class="product-info">
-                <h3 class="product-name">${product.name || product.title || 'Product'}</h3>
-                <p class="product-price">$${product.price || '0.00'}</p>
+                <h3 class="product-name">${product.name}</h3>
+                <p class="product-price">$${price}</p>
             </div>
         `;
         
-        // Add click handler
         productCard.addEventListener('click', () => {
-            console.log('Product clicked:', product);
-            // You can add modal or detail page here
-            alert(`Product: ${product.name}\nPrice: $${product.price}\n\nClick OK to continue`);
+            window.location.href = product.permalink;
         });
         
         productGrid.appendChild(productCard);
     });
+    
+    console.log(`Displayed ${products.length} products`);
 }
+
+// Initialize everything when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    const openAgeGate = initAgeGate();
+    initResearchNotice(openAgeGate);
+    
+    new Carousel();
+    
+    loadWooCommerceProducts();
+    
+    initSmoothScroll();
+    initNewsletter();
+    initNavbarScroll();
+    
+    console.log('VitaSyn Labs Website Loaded');
+});
