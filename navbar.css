@@ -150,6 +150,22 @@
     display: none;
 }
 
+/* Profile Icon */
+.profile-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-icon svg {
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.profile-icon:hover svg {
+    transform: scale(1.1);
+}
+
 @media (max-width: 1200px) {
     .nav-container {
         padding: 18px 32px;
@@ -158,7 +174,10 @@
         height: 90px;
     }
     .nav-menu {
-        gap: 32px;
+        gap: 28px;
+    }
+    .nav-right {
+        gap: 20px;
     }
 }
 
@@ -200,6 +219,13 @@
     }
     .nav-right {
         gap: 16px;
+    }
+    .nav-icon {
+        font-size: 11px;
+    }
+    .profile-icon svg {
+        width: 18px;
+        height: 18px;
     }
 }
 

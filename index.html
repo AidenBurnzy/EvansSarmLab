@@ -160,18 +160,8 @@
     <!-- Footer -->
     <div id="footer-container"></div>
 
+    <script src="navbar.js"></script>
     <script src="script.js"></script>
-    <script>
-        // Dynamically load navbar.html into the navbar-container
-        fetch('navbar.html')
-            .then(response => response.text())
-            .then(html => {
-                const temp = document.createElement('div');
-                temp.innerHTML = html;
-                const navbar = temp.querySelector('nav');
-                document.getElementById('navbar-container').appendChild(navbar);
-            });
-    </script>
     <script>
         // Dynamically load footer.html into the footer-container
         fetch('footer.html')

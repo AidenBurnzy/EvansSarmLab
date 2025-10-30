@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - EVANS PEPTIDES</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="navbar.css">
+    <style>
+        .account-hero {
+            background: #000;
+            color: #fff;
+            padding: 80px 20px 40px;
+            text-align: center;
+            margin-top: 140px;
+        }
+        
+        .account-hero h1 {
+            font-size: 36px;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .account-container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+        }
+        
+        .account-sidebar {
+            background: #fff;
+            border: 2px solid #000;
+            padding: 0;
+            height: fit-content;
+            position: sticky;
+            top: 180px;
+        }
+        
+        .account-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .account-menu li {
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .account-menu li:last-child {
+            border-bottom: none;
+        }
+        
+        .account-menu a {
+            display: block;
+            padding: 20px 25px;
+            color: #000;
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+        }
+        
+        .account-menu a:hover,
+        .account-menu a.active {
+            background: #000;
+            color: #fff;
+            padding-left: 35px;
+        }
+        
+        .account-content {
+            background: #fff;
+            border: 2px solid #000;
+            padding: 50px;
+            min-height: 500px;
+        }
+        
+        .account-section {
+            display: none;
+        }
+        
+        .account-section.active {
+            display: block;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #000;
+        }
+        
+        .profile-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .info-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .info-group label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .info-group input {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .info-group input:focus {
+            outline: none;
+            border-color: #000;
+        }
+        
+        .info-group input:disabled {
+            background: #f5f5f5;
+            cursor: not-allowed;
+        }
+        
+        .profile-value {
+            font-size: 16px;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .edit-button, .save-button, .cancel-button {
+            padding: 12px 30px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border: 2px solid #000;
+            transition: all 0.3s;
+            margin-right: 10px;
+        }
+        
+        .edit-button {
+            background: #000;
+            color: #fff;
+        }
+        
+        .edit-button:hover {
+            background: #fff;
+            color: #000;
+        }
+        
+        .save-button {
+            background: #000;
+            color: #fff;
+        }
+        
+        .cancel-button {
+            background: #fff;
+            color: #000;
+        }
+        
+        .order-card {
+            border: 2px solid #e0e0e0;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+        
+        .order-card:hover {
+            border-color: #000;
+        }
+        
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .order-number {
+            font-size: 14px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        
+        .order-status {
+            padding: 6px 15px;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            border: 2px solid #000;
+            background: #000;
+            color: #fff;
+        }
+        
+        .order-status.pending {
+            background: #fff;
+            color: #000;
+            border-color: #ffa500;
+        }
+        
+        .order-status.shipped {
+            background: #4CAF50;
+            border-color: #4CAF50;
+        }
+        
+        .order-items {
+            margin-top: 15px;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            font-size: 13px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: #666;
+        }
+        
+        .empty-state svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+        
+        .empty-state p {
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+        
+        .shop-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+            border: 2px solid #000;
+            transition: all 0.3s;
+        }
+        
+        .shop-button:hover {
+            background: #fff;
+            color: #000;
+        }
+        
+        .alert {
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border: 2px solid;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+        
+        .alert-success {
+            background: #e8f5e9;
+            border-color: #4CAF50;
+            color: #2e7d32;
+        }
+        
+        .alert-error {
+            background: #ffebee;
+            border-color: #f44336;
+            color: #c62828;
+        }
+        
+        @media (max-width: 768px) {
+            .account-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .account-sidebar {
+                position: static;
+            }
+            
+            .profile-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .account-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div id="navbar-container"></div>
+
+    <!-- Account Hero -->
+    <section class="account-hero">
+        <h1>MY ACCOUNT</h1>
+        <p id="welcome-message" style="font-size: 14px; letter-spacing: 1.5px; margin-top: 10px;">Welcome back</p>
+    </section>
+
+    <!-- Account Container -->
+    <div class="account-container">
+        <!-- Sidebar Menu -->
+        <aside class="account-sidebar">
+            <ul class="account-menu">
+                <li><a href="#profile" class="menu-link active" data-section="profile">MY PROFILE</a></li>
+                <li><a href="#orders" class="menu-link" data-section="orders">MY ORDERS</a></li>
+                <li><a href="#addresses" class="menu-link" data-section="addresses">ADDRESSES</a></li>
+                <li><a href="#logout" id="logout-link">LOGOUT</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="account-content">
+            <!-- Profile Section -->
+            <section id="profile-section" class="account-section active">
+                <h2 class="section-title">PROFILE INFORMATION</h2>
+                <div id="profile-alert"></div>
+                
+                <div id="profile-view">
+                    <div class="profile-info">
+                        <div class="info-group">
+                            <label>FIRST NAME</label>
+                            <div class="profile-value" id="view-firstname">-</div>
+                        </div>
+                        <div class="info-group">
+                            <label>LAST NAME</label>
+                            <div class="profile-value" id="view-lastname">-</div>
+                        </div>
+                        <div class="info-group">
+                            <label>EMAIL ADDRESS</label>
+                            <div class="profile-value" id="view-email">-</div>
+                        </div>
+                        <div class="info-group">
+                            <label>PHONE NUMBER</label>
+                            <div class="profile-value" id="view-phone">-</div>
+                        </div>
+                    </div>
+                    <button class="edit-button" id="edit-profile-btn">EDIT PROFILE</button>
+                </div>
+
+                <div id="profile-edit" style="display: none;">
+                    <form id="profile-form">
+                        <div class="profile-info">
+                            <div class="info-group">
+                                <label>FIRST NAME</label>
+                                <input type="text" id="edit-firstname" required>
+                            </div>
+                            <div class="info-group">
+                                <label>LAST NAME</label>
+                                <input type="text" id="edit-lastname" required>
+                            </div>
+                            <div class="info-group">
+                                <label>EMAIL ADDRESS</label>
+                                <input type="email" id="edit-email" disabled>
+                            </div>
+                            <div class="info-group">
+                                <label>PHONE NUMBER</label>
+                                <input type="tel" id="edit-phone">
+                            </div>
+                        </div>
+                        <button type="submit" class="save-button">SAVE CHANGES</button>
+                        <button type="button" class="cancel-button" id="cancel-edit-btn">CANCEL</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Orders Section -->
+            <section id="orders-section" class="account-section">
+                <h2 class="section-title">ORDER HISTORY</h2>
+                <div id="orders-list">
+                    <!-- Orders will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Addresses Section -->
+            <section id="addresses-section" class="account-section">
+                <h2 class="section-title">SAVED ADDRESSES</h2>
+                <div class="empty-state">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <p>No saved addresses yet</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <script src="navbar.js"></script>
+    <script src="auth-local.js"></script>
+    <script>
+        const auth = new Auth();
+        
+        // Check if user is logged in
+        if (!auth.isLoggedIn()) {
+            window.location.href = 'login.html';
+        }
+
+        // Load user profile
+        async function loadProfile() {
+            try {
+                const data = await auth.getProfile();
+                
+                if (data.user) {
+                    const user = data.user;
+                    
+                    // Update welcome message
+                    document.getElementById('welcome-message').textContent = 
+                        `Welcome back, ${user.firstName}!`;
+                    
+                    // Update profile view
+                    document.getElementById('view-firstname').textContent = user.firstName;
+                    document.getElementById('view-lastname').textContent = user.lastName;
+                    document.getElementById('view-email').textContent = user.email;
+                    document.getElementById('view-phone').textContent = user.phone || 'Not provided';
+                    
+                    // Update edit form
+                    document.getElementById('edit-firstname').value = user.firstName;
+                    document.getElementById('edit-lastname').value = user.lastName;
+                    document.getElementById('edit-email').value = user.email;
+                    document.getElementById('edit-phone').value = user.phone || '';
+                }
+            } catch (error) {
+                console.error('Error loading profile:', error);
+            }
+        }
+
+        // Load orders
+        async function loadOrders() {
+            const ordersList = document.getElementById('orders-list');
+            
+            try {
+                const data = await auth.getOrders();
+                
+                if (data.orders && data.orders.length > 0) {
+                    ordersList.innerHTML = data.orders.map(order => `
+                        <div class="order-card">
+                            <div class="order-header">
+                                <div>
+                                    <div class="order-number">Order #${order.orderNumber}</div>
+                                    <div style="font-size: 12px; color: #666; margin-top: 5px;">
+                                        ${new Date(order.createdAt).toLocaleDateString('en-US', { 
+                                            year: 'numeric', 
+                                            month: 'long', 
+                                            day: 'numeric' 
+                                        })}
+                                    </div>
+                                </div>
+                                <div class="order-status ${order.status}">${order.status.toUpperCase()}</div>
+                            </div>
+                            <div class="order-items">
+                                ${order.items ? order.items.map(item => `
+                                    <div class="order-item">
+                                        <span>${item.productName} × ${item.quantity}</span>
+                                        <span>$${(item.productPrice * item.quantity).toFixed(2)}</span>
+                                    </div>
+                                `).join('') : ''}
+                            </div>
+                            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e0e0e0; text-align: right; font-weight: 600;">
+                                Total: $${parseFloat(order.totalAmount).toFixed(2)}
+                            </div>
+                            ${order.trackingNumber ? `
+                                <div style="margin-top: 15px; font-size: 12px; color: #666;">
+                                    Tracking: ${order.trackingNumber}
+                                </div>
+                            ` : ''}
+                        </div>
+                    `).join('');
+                } else {
+                    ordersList.innerHTML = `
+                        <div class="empty-state">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                            </svg>
+                            <p>No orders yet</p>
+                            <a href="order.html" class="shop-button">START SHOPPING</a>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error loading orders:', error);
+                ordersList.innerHTML = '<p style="text-align: center; color: #666;">Unable to load orders</p>';
+            }
+        }
+
+        // Menu navigation
+        document.querySelectorAll('.menu-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Update active menu item
+                document.querySelectorAll('.menu-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                // Show corresponding section
+                const section = link.dataset.section;
+                document.querySelectorAll('.account-section').forEach(s => s.classList.remove('active'));
+                document.getElementById(`${section}-section`).classList.add('active');
+                
+                // Load data if needed
+                if (section === 'orders') {
+                    loadOrders();
+                }
+            });
+        });
+
+        // Edit profile
+        document.getElementById('edit-profile-btn').addEventListener('click', () => {
+            document.getElementById('profile-view').style.display = 'none';
+            document.getElementById('profile-edit').style.display = 'block';
+        });
+
+        // Cancel edit
+        document.getElementById('cancel-edit-btn').addEventListener('click', () => {
+            document.getElementById('profile-view').style.display = 'block';
+            document.getElementById('profile-edit').style.display = 'none';
+        });
+
+        // Save profile
+        document.getElementById('profile-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const alertDiv = document.getElementById('profile-alert');
+            const firstName = document.getElementById('edit-firstname').value;
+            const lastName = document.getElementById('edit-lastname').value;
+            const phone = document.getElementById('edit-phone').value;
+            
+            try {
+                const data = await auth.updateProfile(firstName, lastName, phone);
+                
+                if (data.success) {
+                    alertDiv.innerHTML = '<div class="alert alert-success">Profile updated successfully!</div>';
+                    
+                    // Update view
+                    document.getElementById('view-firstname').textContent = firstName;
+                    document.getElementById('view-lastname').textContent = lastName;
+                    document.getElementById('view-phone').textContent = phone || 'Not provided';
+                    
+                    // Update welcome message
+                    document.getElementById('welcome-message').textContent = `Welcome back, ${firstName}!`;
+                    
+                    // Switch back to view mode
+                    setTimeout(() => {
+                        document.getElementById('profile-view').style.display = 'block';
+                        document.getElementById('profile-edit').style.display = 'none';
+                        alertDiv.innerHTML = '';
+                    }, 2000);
+                } else {
+                    alertDiv.innerHTML = `<div class="alert alert-error">${data.error || 'Update failed'}</div>`;
+                }
+            } catch (error) {
+                console.error('Update error:', error);
+                alertDiv.innerHTML = '<div class="alert alert-error">Failed to update profile</div>';
+            }
+        });
+
+        // Logout
+        document.getElementById('logout-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            auth.logout();
+            window.location.href = 'index.html';
+        });
+
+        // Load footer
+        fetch('footer.html')
+            .then(r => r.text())
+            .then(html => {
+                const temp = document.createElement('div');
+                temp.innerHTML = html;
+                const footer = temp.querySelector('footer');
+                if (footer) document.getElementById('footer-container').appendChild(footer);
+            });
+
+        // Initialize
+        loadProfile();
+    </script>
+</body>
+</html>

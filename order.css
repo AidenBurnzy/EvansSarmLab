@@ -1231,3 +1231,99 @@
     background: #fff;
     color: #000;
 }
+
+/* Profile Dropdown */
+.profile-dropdown {
+    position: fixed;
+    top: 170px;
+    right: 40px;
+    z-index: 3500;
+}
+
+.profile-dropdown.hidden {
+    display: none;
+}
+
+.profile-dropdown-content {
+    background: #fff;
+    border: 2px solid #000;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    min-width: 280px;
+}
+
+.profile-dropdown-header {
+    padding: 30px 25px;
+    text-align: center;
+    background: #000;
+    color: #fff;
+    border-bottom: 1px solid #333;
+}
+
+.profile-avatar {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 15px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-avatar svg {
+    stroke: #000;
+}
+
+.profile-greeting {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    margin: 0;
+}
+
+.profile-menu {
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.profile-menu li {
+    margin: 0;
+}
+
+.profile-menu a {
+    display: block;
+    padding: 14px 25px;
+    color: #000;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    transition: all 0.3s;
+}
+
+.profile-menu a:hover {
+    background: #f5f5f5;
+    padding-left: 30px;
+}
+
+.profile-divider {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 10px 0;
+}
+
+.profile-login {
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .profile-dropdown {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+    }
+    
+    .profile-dropdown-content {
+        min-width: 100%;
+    }
+}

@@ -182,13 +182,6 @@ function showCartNotification(productName) {
 function initCart() {
     loadCart();
     
-    document.addEventListener('click', (e) => {
-        if (e.target.closest('#cart-icon') || e.target.closest('.cart-icon')) {
-            e.preventDefault();
-            openCart();
-        }
-    });
-    
     const closeBtn = document.getElementById('cart-close');
     if (closeBtn) closeBtn.addEventListener('click', closeCart);
     
@@ -504,15 +497,20 @@ function initProductModal() {
 
 // Load components
 function loadComponents() {
-    fetch('navbar.html')
-        .then(r => r.text())
-        .then(html => {
-            const temp = document.createElement('div');
-            temp.innerHTML = html;
-            const navbar = temp.querySelector('nav');
-            if (navbar) document.getElementById('navbar-container').appendChild(navbar);
-        });
+    // navbar.js handles navbar loading and basic initialization
+    // We just need to listen for custom events from navbar.js
     
+    // Listen for cart open event from navbar.js
+    document.addEventListener('openCart', () => {
+        openCart();
+    });
+    
+    // Listen for profile toggle event from navbar.js
+    document.addEventListener('toggleProfile', () => {
+        toggleProfileDropdown();
+    });
+    
+    // Load footer
     fetch('footer.html')
         .then(r => r.text())
         .then(html => {
@@ -521,6 +519,30 @@ function loadComponents() {
             const footer = temp.querySelector('footer');
             if (footer) document.getElementById('footer-container').appendChild(footer);
         });
+}
+
+// Toggle profile dropdown (called by navbar.js custom event)
+function toggleProfileDropdown() {
+    const dropdown = document.getElementById('profile-dropdown');
+    if (dropdown) {
+        dropdown.classList.toggle('hidden');
+    }
+}
+
+// Open cart sidebar (called by navbar.js custom event or internally)
+function openCart() {
+    const cartSidebar = document.getElementById('cart-sidebar');
+    const cartOverlay = document.getElementById('cart-overlay');
+    if (cartSidebar) cartSidebar.classList.remove('hidden');
+    if (cartOverlay) cartOverlay.classList.remove('hidden');
+}
+
+// Close cart sidebar
+function closeCart() {
+    const cartSidebar = document.getElementById('cart-sidebar');
+    const cartOverlay = document.getElementById('cart-overlay');
+    if (cartSidebar) cartSidebar.classList.add('hidden');
+    if (cartOverlay) cartOverlay.classList.add('hidden');
 }
 
 // Helper functions
@@ -576,16 +598,104 @@ function initResearchNotice(onContinue) {
     });
 }
 
+// Profile Dropdown Functions
+function openProfileDropdown() {
+    const dropdown = document.getElementById('profile-dropdown');
+    if (dropdown) {
+        dropdown.classList.remove('hidden');
+    }
+}
+
+// Close profile dropdown
+function closeProfileDropdown() {
+    const dropdown = document.getElementById('profile-dropdown');
+    if (dropdown) {
+        dropdown.classList.add('hidden');
+    }
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+    const dropdown = document.getElementById('profile-dropdown');
+    const profileIcon = document.getElementById('profile-icon');
+    
+    if (dropdown && !dropdown.classList.contains('hidden')) {
+        if (!dropdown.contains(e.target) && !profileIcon?.contains(e.target)) {
+            closeProfileDropdown();
+        }
+    }
+});
+
+// Close on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeProfileDropdown();
+        closeCart();
+    }
+});
+
+// Populate profile dropdown based on login status
+function initializeProfileDropdown() {
+    const profileGreeting = document.getElementById('profile-greeting');
+    const profileMenu = document.getElementById('profile-menu');
+    
+    if (!profileGreeting || !profileMenu) return;
+    
+    // Check if Auth class is available
+    if (typeof Auth === 'undefined') {
+        console.warn('Auth class not loaded yet, will retry...');
+        setTimeout(initializeProfileDropdown, 100);
+        return;
+    }
+    
+    const auth = new Auth();
+    
+    if (auth.isLoggedIn() && auth.user) {
+        // User is logged in
+        profileGreeting.textContent = `Welcome, ${auth.user.firstName || 'User'}!`;
+        profileMenu.innerHTML = `
+            <li><a href="account.html">My Account</a></li>
+            <li><a href="account.html#orders">My Orders</a></li>
+            <li><a href="#track-order" onclick="alert('Track Order functionality coming soon!'); return false;">Track Order</a></li>
+            <li class="profile-divider"></li>
+            <li><a href="#logout" id="profile-logout" class="profile-login">Logout</a></li>
+        `;
+        
+        // Add logout handler
+        const logoutLink = document.getElementById('profile-logout');
+        if (logoutLink) {
+            logoutLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                auth.logout();
+                window.location.href = 'index.html';
+            });
+        }
+    } else {
+        // User is not logged in
+        profileGreeting.textContent = 'Welcome, Guest';
+        profileMenu.innerHTML = `
+            <li><a href="login.html">Sign In</a></li>
+            <li><a href="register.html">Create Account</a></li>
+        `;
+    }
+}
+
 // Initialize everything
 document.addEventListener('DOMContentLoaded', function() {
     const openAgeGate = initAgeGate();
     initResearchNotice(openAgeGate);
     
-    loadComponents();
+    loadComponents(); // Load footer and listen for navbar events
     loadAllProducts();
     initSearch();
     initProductModal();
-    initCart();
+    initCart(); // Initialize cart sidebar functionality
+    initializeProfileDropdown(); // Set up profile dropdown menu
+    
+    // Check if URL has #cart hash and open cart
+    if (window.location.hash === '#cart') {
+        setTimeout(() => openCart(), 500);
+    }
     
     console.log('Order page loaded');
 });

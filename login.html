@@ -169,17 +169,10 @@
     <!-- Footer -->
     <div id="footer-container"></div>
     
-    <script src="auth.js"></script>
+    <script src="navbar.js"></script>
+    <script src="auth-local.js"></script>
     <script>
-        // Load navbar
-        fetch('navbar.html')
-            .then(r => r.text())
-            .then(html => {
-                const temp = document.createElement('div');
-                temp.innerHTML = html;
-                const navbar = temp.querySelector('nav');
-                document.getElementById('navbar-container').appendChild(navbar);
-            });
+        const auth = new Auth();
         
         // Load footer
         fetch('footer.html')
@@ -193,7 +186,7 @@
         
         // Check if already logged in
         if (auth.isLoggedIn()) {
-            window.location.href = 'order.html';
+            window.location.href = 'account.html';
         }
         
         // Handle login
@@ -227,7 +220,7 @@
                     successDiv.textContent = 'Login successful! Redirecting...';
                     successDiv.style.display = 'block';
                     setTimeout(() => {
-                        window.location.href = 'order.html';
+                        window.location.href = 'account.html';
                     }, 1000);
                 }
             } catch (error) {

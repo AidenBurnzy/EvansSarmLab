@@ -85,6 +85,24 @@
             </div>
         </div>
     </div>
+
+    <!-- Profile Dropdown -->
+    <div class="profile-dropdown hidden" id="profile-dropdown">
+        <div class="profile-dropdown-content">
+            <div class="profile-dropdown-header">
+                <div class="profile-avatar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <p class="profile-greeting" id="profile-greeting">Welcome, Guest</p>
+            </div>
+            <ul class="profile-menu" id="profile-menu">
+                <!-- Menu items will be dynamically added based on login status -->
+            </ul>
+        </div>
+    </div>
     
     <!-- Navigation -->
     <div id="navbar-container"></div>
@@ -174,6 +192,8 @@
     <!-- Footer -->
     <div id="footer-container"></div>
 
+    <script src="navbar.js"></script>
+    <script src="auth-local.js"></script>
     <script src="order.js"></script>
 </body>
 </html>
