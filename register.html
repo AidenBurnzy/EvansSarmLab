@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - VitaSyn Labs</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="footer.css">
+    <style>
+        .auth-container {
+            max-width: 500px;
+            margin: 200px auto 100px;
+            padding: 50px 40px;
+            background: #fff;
+            border: 2px solid #000;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .auth-title {
+            font-size: 32px;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .auth-subtitle {
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #666;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #000;
+        }
+        
+        .auth-button {
+            width: 100%;
+            padding: 18px;
+            background: #000;
+            color: #fff;
+            border: 2px solid #000;
+            font-size: 13px;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .auth-button:hover {
+            background: #fff;
+            color: #000;
+        }
+        
+        .auth-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .auth-link {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+        
+        .auth-link a {
+            color: #000;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid #000;
+        }
+        
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            padding: 15px;
+            margin-bottom: 25px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            border-left: 4px solid #c62828;
+        }
+        
+        .success-message {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 15px;
+            margin-bottom: 25px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            border-left: 4px solid #2e7d32;
+        }
+        
+        .password-requirements {
+            font-size: 11px;
+            color: #666;
+            margin-top: 5px;
+            letter-spacing: 0.5px;
+        }
+        
+        @media (max-width: 768px) {
+            .auth-container {
+                margin-top: 250px;
+                padding: 40px 30px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .auth-container {
+                margin: 220px 20px 80px;
+                padding: 30px 25px;
+            }
+            
+            .auth-title {
+                font-size: 24px;
+                letter-spacing: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div id="navbar-container"></div>
+    
+    <div class="auth-container">
+        <h1 class="auth-title">CREATE ACCOUNT</h1>
+        <p class="auth-subtitle">Join VitaSyn Labs Research Community</p>
+        
+        <div id="error-message" class="error-message" style="display: none;"></div>
+        <div id="success-message" class="success-message" style="display: none;"></div>
+        
+        <form id="register-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">FIRST NAME</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lastName">LAST NAME</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">EMAIL ADDRESS</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">PHONE NUMBER (OPTIONAL)</label>
+                <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">PASSWORD</label>
+                <input type="password" id="password" name="password" required minlength="8">
+                <p class="password-requirements">Minimum 8 characters</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmPassword">CONFIRM PASSWORD</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            
+            <button type="submit" class="auth-button" id="submit-btn">CREATE ACCOUNT</button>
+        </form>
+        
+        <div class="auth-link">
+            Already have an account? <a href="login.html">Login here</a>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div id="footer-container"></div>
+    
+    <script src="auth.js"></script>
+    <script>
+        // Load navbar
+        fetch('navbar.html')
+            .then(r => r.text())
+            .then(html => {
+                const temp = document.createElement('div');
+                temp.innerHTML = html;
+                const navbar = temp.querySelector('nav');
+                document.getElementById('navbar-container').appendChild(navbar);
+            });
+        
+        // Load footer
+        fetch('footer.html')
+            .then(r => r.text())
+            .then(html => {
+                const temp = document.createElement('div');
+                temp.innerHTML = html;
+                const footer = temp.querySelector('footer');
+                document.getElementById('footer-container').appendChild(footer);
+            });
+        
+        // Check if already logged in
+        if (auth.isLoggedIn()) {
+            window.location.href = 'order.html';
+        }
+        
+        // Handle registration
+        document.getElementById('register-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const errorDiv = document.getElementById('error-message');
+            const successDiv = document.getElementById('success-message');
+            
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // Hide messages
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
+            
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                errorDiv.textContent = 'Passwords do not match';
+                errorDiv.style.display = 'block';
+                return;
+            }
+            
+            // Validate password length
+            if (password.length < 8) {
+                errorDiv.textContent = 'Password must be at least 8 characters';
+                errorDiv.style.display = 'block';
+                return;
+            }
+            
+            // Disable button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'CREATING ACCOUNT...';
+            
+            try {
+                const result = await auth.register(email, password, firstName, lastName, phone);
+                
+                if (result.error) {
+                    errorDiv.textContent = result.error;
+                    errorDiv.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'CREATE ACCOUNT';
+                } else {
+                    successDiv.textContent = 'Account created successfully! Redirecting...';
+                    successDiv.style.display = 'block';
+                    setTimeout(() => {
+                        window.location.href = 'order.html';
+                    }, 1500);
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                errorDiv.textContent = 'Registration failed. Please try again.';
+                errorDiv.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'CREATE ACCOUNT';
+            }
+        });
+    </script>
+</body>
+</html>
