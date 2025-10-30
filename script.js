@@ -217,6 +217,8 @@ const WOOCOMMERCE_URL = 'https://vitasynlabs.com';
 const CONSUMER_KEY = 'ck_a4b4226fbbdff41fd6d7faba18a10b3ebc3004cb';
 const CONSUMER_SECRET = 'cs_30cb119423d871d615d87ac96c23420dad3c8e1e';
 
+let allProducts = []; // Store all products globally
+
 async function loadWooCommerceProducts() {
     try {
         console.log('Fetching products from WooCommerce...');
@@ -231,6 +233,8 @@ async function loadWooCommerceProducts() {
 
         const products = await response.json();
         console.log('Products loaded:', products);
+        
+        allProducts = products; // Store globally
         
         if (products && products.length > 0) {
             displayWooCommerceProducts(products);
@@ -272,17 +276,91 @@ function displayWooCommerceProducts(products) {
             <div class="product-info">
                 <h3 class="product-name">${product.name}</h3>
                 <p class="product-price">$${price}</p>
+                <button class="view-details-btn">VIEW DETAILS</button>
             </div>
         `;
         
-        productCard.addEventListener('click', () => {
-            window.location.href = product.permalink;
+        // Open product detail modal instead of redirecting
+        productCard.addEventListener('click', (e) => {
+            openProductDetail(product);
         });
         
         productGrid.appendChild(productCard);
     });
     
     console.log(`Displayed ${products.length} products`);
+}
+
+function openProductDetail(product) {
+    // Remove existing modal if any
+    const existingModal = document.querySelector('.product-modal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+
+    // Create modal
+    const modal = document.createElement('div');
+    modal.className = 'product-modal';
+    
+    const imageUrl = product.images && product.images.length > 0 
+        ? product.images[0].src 
+        : null;
+    
+    const price = product.price || '0.00';
+    const description = product.description || product.short_description || 'No description available.';
+    
+    modal.innerHTML = `
+        <div class="product-modal-overlay"></div>
+        <div class="product-modal-content">
+            <button class="product-modal-close">&times;</button>
+            
+            <div class="product-modal-grid">
+                <div class="product-modal-image">
+                    ${imageUrl ? 
+                        `<img src="${imageUrl}" alt="${product.name}">` :
+                        `<div class="product-modal-placeholder">PRODUCT IMAGE</div>`
+                    }
+                </div>
+                
+                <div class="product-modal-info">
+                    <h2 class="product-modal-title">${product.name}</h2>
+                    <p class="product-modal-price">$${price}</p>
+                    
+                    <div class="product-modal-description">
+                        ${description}
+                    </div>
+                    
+                    <div class="product-modal-meta">
+                        <p><strong>SKU:</strong> ${product.sku || 'N/A'}</p>
+                        <p><strong>Stock Status:</strong> ${product.stock_status === 'instock' ? 'In Stock' : 'Out of Stock'}</p>
+                    </div>
+                    
+                    <div class="product-modal-actions">
+                        <a href="${product.permalink}" class="product-modal-btn primary">ADD TO CART</a>
+                        <button class="product-modal-btn secondary" onclick="document.querySelector('.product-modal').remove(); document.body.style.overflow = '';">CONTINUE SHOPPING</button>
+                    </div>
+                    
+                    <div class="product-modal-disclaimer">
+                        <p><em>For research purposes only. Not for human consumption.</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    document.body.style.overflow = 'hidden';
+    
+    // Close modal handlers
+    modal.querySelector('.product-modal-close').addEventListener('click', () => {
+        modal.remove();
+        document.body.style.overflow = '';
+    });
+    
+    modal.querySelector('.product-modal-overlay').addEventListener('click', () => {
+        modal.remove();
+        document.body.style.overflow = '';
+    });
 }
 
 // Initialize everything when DOM is ready

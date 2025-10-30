@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order - EVANS PEPTIDES</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="order.css">
+</head>
+<body>
+    <!-- Professional Notice for Research Purposes -->
+    <div class="research-notice hidden" role="dialog" aria-modal="true" aria-labelledby="research-notice-title">
+        <div class="notice-content">
+            <h2 id="research-notice-title">Research Laboratory Notice</h2>
+            <p>This site contains information about peptides for research and educational purposes only. Products are intended for laboratory research use by qualified professionals.</p>
+            <div class="notice-actions">
+                <button type="button" id="notice-continue" class="notice-button primary">I Understand - Continue</button>
+                <button type="button" id="notice-exit" class="notice-button">Exit</button>
+            </div>
+            <p class="notice-message hidden" role="alert">This site is intended for research professionals only.</p>
+        </div>
+    </div>
+
+    <!-- Age Verification Gate -->
+    <div class="age-gate hidden" role="dialog" aria-modal="true" aria-labelledby="age-gate-title">
+        <div class="age-gate-content">
+            <h2 id="age-gate-title">Age Verification</h2>
+            <p>This website contains research chemical information intended for audiences 21 years of age or older. Please confirm your age to continue.</p>
+            <div class="age-gate-actions">
+                <button type="button" id="age-verify-yes" class="age-gate-button primary">Yes, I am 21 or older</button>
+                <button type="button" id="age-verify-no" class="age-gate-button">No</button>
+            </div>
+            <p class="age-gate-message hidden" role="alert">Access restricted. You must be 21 or older to view this site.</p>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="product-modal hidden" id="product-modal" role="dialog" aria-modal="true">
+        <div class="product-modal-overlay" id="modal-overlay"></div>
+        <div class="product-modal-content">
+            <button class="product-modal-close" id="modal-close" aria-label="Close modal">&times;</button>
+            <div class="product-modal-grid">
+                <div class="product-modal-image" id="modal-image-container">
+                    <img id="modal-product-image" src="" alt="Product Image">
+                </div>
+                <div class="product-modal-info">
+                    <h2 id="modal-product-name" class="product-modal-title"></h2>
+                    <p id="modal-product-price" class="product-modal-price"></p>
+                    <div id="modal-product-description" class="product-modal-description"></div>
+                    <div class="product-modal-actions">
+                        <a id="modal-view-product" href="#" class="product-modal-btn primary">VIEW FULL DETAILS</a>
+                        <button id="modal-add-to-cart" class="product-modal-btn secondary">ADD TO CART</button>
+                    </div>
+                    <div class="product-modal-disclaimer">
+                        <p style="font-size: 12px; letter-spacing: 0.5px; margin: 0;">For research purposes only. Not for human consumption.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar hidden" id="cart-sidebar">
+        <div class="cart-overlay" id="cart-overlay"></div>
+        <div class="cart-panel">
+            <div class="cart-header">
+                <h2>SHOPPING CART</h2>
+                <button class="cart-close-btn" id="cart-close">&times;</button>
+            </div>
+            <div class="cart-body" id="cart-body">
+                <div class="cart-empty" id="cart-empty">
+                    <p>Your cart is empty</p>
+                </div>
+                <div class="cart-items" id="cart-items"></div>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>TOTAL:</span>
+                    <span id="cart-total-price">$0.00</span>
+                </div>
+                <button class="cart-checkout-btn" id="cart-checkout">PROCEED TO CHECKOUT</button>
+                <button class="cart-continue-btn" id="cart-continue">CONTINUE SHOPPING</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <div id="navbar-container"></div>
+
+    <!-- Order Hero Section -->
+    <section class="order-hero">
+        <div class="order-hero-content">
+            <h1 class="order-hero-title">RESEARCH PEPTIDES</h1>
+            <p class="order-hero-subtitle">Premium Quality • Laboratory Tested • Research Grade</p>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="product-search" class="search-input" placeholder="SEARCH PEPTIDES...">
+                <button class="search-btn" id="search-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Stacks Section -->
+    <section class="stacks-section">
+        <div class="stacks-container">
+            <h2 class="section-title">FEATURED PEPTIDE STACKS</h2>
+            
+            <!-- Wolverine Stack -->
+            <div class="stack-card wolverine-stack">
+                <div class="stack-header">
+                    <h3 class="stack-title">WOLVERINE STACK</h3>
+                    <p class="stack-subtitle">Ultimate Recovery & Regeneration</p>
+                </div>
+                <div class="stack-content">
+                    <div class="stack-description">
+                        <p>The Wolverine Stack combines powerful peptides designed for enhanced recovery, tissue repair, and accelerated healing. Ideal for research in regenerative medicine and performance optimization.</p>
+                        <ul class="stack-benefits">
+                            <li>Enhanced tissue repair</li>
+                            <li>Accelerated recovery</li>
+                            <li>Joint & tendon support</li>
+                            <li>Improved sleep quality</li>
+                        </ul>
+                    </div>
+                    <div class="stack-products" id="wolverine-products">
+                        <!-- Products will be populated dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Glow Stack -->
+            <div class="stack-card glow-stack">
+                <div class="stack-header">
+                    <h3 class="stack-title">GLOW STACK</h3>
+                    <p class="stack-subtitle">Cellular Rejuvenation & Vitality</p>
+                </div>
+                <div class="stack-content">
+                    <div class="stack-description">
+                        <p>The Glow Stack focuses on cellular rejuvenation, skin health, and overall vitality. This combination is perfect for research into anti-aging and metabolic enhancement.</p>
+                        <ul class="stack-benefits">
+                            <li>Cellular rejuvenation</li>
+                            <li>Skin health & elasticity</li>
+                            <li>Metabolic optimization</li>
+                            <li>Anti-aging research</li>
+                        </ul>
+                    </div>
+                    <div class="stack-products" id="glow-products">
+                        <!-- Products will be populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Products Section -->
+    <section class="shop-section" id="all-products">
+        <h2 class="section-title">ALL PEPTIDES</h2>
+        <div class="product-grid" id="product-grid">
+            <!-- Products will be populated from WooCommerce API -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <script src="order.js"></script>
+</body>
+</html>

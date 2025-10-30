@@ -123,6 +123,33 @@
     opacity: 0.6;
 }
 
+/* Cart Icon */
+.cart-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cart-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 0;
+}
+
+.cart-count.hidden {
+    display: none;
+}
+
 @media (max-width: 1200px) {
     .nav-container {
         padding: 18px 32px;
