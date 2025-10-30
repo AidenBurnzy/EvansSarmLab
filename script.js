@@ -251,17 +251,86 @@ function initNavbarScroll() {
 }
 
 // Initialize everything when DOM is ready
+// Initialize everything when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     const openAgeGate = initAgeGate();
     initResearchNotice(openAgeGate);
     // Initialize carousel
     new Carousel();
     
+    // Load DropShip products
+    loadDropShipProducts();
+    
     // Initialize other features
-    initProductCards();
     initSmoothScroll();
     initNewsletter();
     initNavbarScroll();
     
     console.log('Research Laboratory Website Loaded');
 });
+
+// DropShipEazy API Integration
+const DROPSHIP_API_KEY = 'dss_10ce498615f6e6d677a2a13af5df18a1ed890be2bf35875b6f521050d0a15d29';
+
+async function loadDropShipProducts() {
+    try {
+        const response = await fetch('https://api.dropshipeazy.com/v1/products', {
+            headers: {
+                'Authorization': `Bearer ${DROPSHIP_API_KEY}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Products loaded:', data);
+        
+        // Display the products
+        displayDropShipProducts(data.products || data);
+    } catch (error) {
+        console.error('Error loading products:', error);
+        // Keep placeholder products if API fails
+    }
+}
+
+function displayDropShipProducts(products) {
+    const productGrid = document.querySelector('.product-grid');
+    
+    if (!products || products.length === 0) {
+        console.log('No products found');
+        return;
+    }
+
+    // Clear existing placeholder products
+    productGrid.innerHTML = '';
+
+    // Add each product from the API
+    products.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        
+        productCard.innerHTML = `
+            <div class="product-image">
+                ${product.image ? 
+                    `<img src="${product.image}" alt="${product.name || 'Product'}" style="width: 100%; height: 100%; object-fit: cover;">` :
+                    `<div class="placeholder-img">PEPTIDE IMAGE</div>`
+                }
+            </div>
+            <div class="product-info">
+                <h3 class="product-name">${product.name || product.title || 'Product'}</h3>
+                <p class="product-price">$${product.price || '0.00'}</p>
+            </div>
+        `;
+        
+        // Add click handler
+        productCard.addEventListener('click', () => {
+            console.log('Product clicked:', product);
+            // You can add modal or detail page here
+            alert(`Product: ${product.name}\nPrice: $${product.price}\n\nClick OK to continue`);
+        });
+        
+        productGrid.appendChild(productCard);
+    });
+}

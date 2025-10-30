@@ -79,6 +79,18 @@ body.notice-locked {
 .notice-button.primary {
     background-color: #000;
     color: #fff;
+    background: linear-gradient(270deg, #1a2b5e, #ffffff, #2d4a8f, #1a2b5e);
+    background-size: 600% 600%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: blueGradientMove 4s ease-in-out infinite;
+}
+
+@keyframes blueGradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .notice-button:hover:not(:disabled) {
@@ -173,8 +185,6 @@ body.notice-locked {
     font-size: 13px;
     letter-spacing: 0.5px;
 }
-
-/* Navigation */
 
 /* Carousel Section */
 .carousel-section {
@@ -312,6 +322,180 @@ body.notice-locked {
 
 .dot.active {
     opacity: 1;
+}
+
+/* Premium Why Choose Us Banner */
+.why-choose-banner {
+    background: linear-gradient(rgb(255, 255, 255), #e0e0e0);
+    padding: 80px 20px;
+    margin: 60px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.why-choose-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #000000, transparent);
+}
+
+.why-choose-banner::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #000000, transparent);
+}
+
+.why-choose-banner-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.why-choose-item {
+    flex: 1 1 300px;
+    background: linear-gradient(135deg, #232526 0%, #000000 100%);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(201, 169, 97, 0.1);
+    padding: 50px 35px 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.why-choose-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+
+.why-choose-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 48px rgba(201, 169, 97, 0.2);
+    border-color: rgba(201, 169, 97, 0.5);
+}
+
+.why-choose-icon {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    position: static;
+    animation: none;
+}
+
+@keyframes iconPulse {
+    0%, 100% {
+        box-shadow: 0 4px 20px rgba(201, 169, 97, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 30px rgba(201, 169, 97, 0.6);
+    }
+}
+
+.why-choose-icon svg {
+    width: 40px;
+    height: 40px;
+    fill: #000;
+    stroke: #000;
+}
+
+.why-choose-icon img {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    display: block;
+}
+
+.why-choose-item h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #c9a961 0%, #f4e4b8 50%, #c9a961 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+    position: relative;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.why-choose-item p {
+    font-size: 15px;
+    color: #ffffff;
+    line-height: 1.8;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* Why Choose Us Section (Old version - can be removed if not used) */
+.why-choose-section {
+    padding: 80px 40px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.why-choose-section .section-title {
+    text-align: center;
+    font-size: 38px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    margin-bottom: 40px;
+}
+
+.why-choose-content {
+    font-size: 15px;
+    color: #ffffff;
+    line-height: 1.7;
+    margin: 0;
+    border-radius: 10px;
+    padding: 36px 32px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+}
+
+.why-choose-content p {
+    margin-bottom: 18px;
+}
+
+.why-choose-content p:last-child {
+    margin-bottom: 0;
 }
 
 /* Shop Section */
@@ -459,8 +643,6 @@ body.notice-locked {
 
 /* Responsive */
 @media (max-width: 1200px) {
-    /* navbar styles moved to navbar.css */
-
     .hero-title {
         font-size: 60px;
         letter-spacing: 6px;
@@ -516,9 +698,22 @@ body.notice-locked {
     }
 }
 
-@media (max-width: 768px) {
-    /* navbar styles moved to navbar.css */
+@media (max-width: 900px) {
+    .why-choose-banner-inner {
+        flex-direction: column;
+        gap: 35px;
+    }
+    
+    .why-choose-item {
+        padding: 40px 30px 35px;
+    }
 
+    .why-choose-banner {
+        padding: 60px 20px;
+    }
+}
+
+@media (max-width: 768px) {
     .carousel-section {
         margin-top: 200px;
         height: auto;
@@ -549,8 +744,6 @@ body.notice-locked {
         font-size: 14px;
     }
 
-    /* navbar styles moved to navbar.css */
-
     .hero-title {
         font-size: 36px;
         letter-spacing: 2px;
@@ -580,11 +773,24 @@ body.notice-locked {
         min-width: 120px;
         padding: 10px 18px;
     }
+
+    .why-choose-item h3 {
+        font-size: 18px;
+        letter-spacing: 1.5px;
+    }
+
+    .why-choose-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .why-choose-icon svg {
+        width: 35px;
+        height: 35px;
+    }
 }
 
 @media (max-width: 400px) {
-    /* navbar styles moved to navbar.css */
-
     .hero-title {
         font-size: 30px;
     }
@@ -602,4 +808,3 @@ body.notice-locked {
         padding: 24px 18px;
     }
 }
-

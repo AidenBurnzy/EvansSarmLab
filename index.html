@@ -67,6 +67,35 @@
         </div>
     </section>
 
+    <!-- Premium Why Choose Us Section -->
+    <section class="why-choose-banner">
+        <div class="why-choose-banner-inner">
+            <div class="why-choose-item">
+                <div class="why-choose-icon" aria-hidden="true">
+                    <img src="icons/plane.png" alt="Free delivery icon">
+                </div>
+                <h3>Free Delivery</h3>
+                <p>We strive to provide fast and reliable delivery, no matter where you are. For orders over $200, the shipping is on us.</p>
+            </div>
+            
+            <div class="why-choose-item">
+                <div class="why-choose-icon" aria-hidden="true">
+                    <img src="icons/tpt.png" alt="Quality badge icon">
+                </div>
+                <h3>Highest Quality Peptides</h3>
+                <p>Our peptides are manufactured locally against the highest standards for synthesis, undergoing rigorous quality control measures to ensure their purity, stability, and consistency.</p>
+            </div>
+            
+            <div class="why-choose-item">
+                <div class="why-choose-icon" aria-hidden="true">
+                    <img src="icons/tube.png" alt="Lab icon">
+                </div>
+                <h3>Third Party Tested</h3>
+                <p>99% Purity rating tested and officially rated by third party organizations.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Shop Grid -->
     <section class="shop-section">
         <h2 class="section-title">RESEARCH CATALOG</h2>
@@ -129,11 +158,10 @@
     </section>
 
     <!-- Footer -->
-
     <div id="footer-container"></div>
 
     <script src="script.js"></script>
-        <script>
+    <script>
         // Dynamically load navbar.html into the navbar-container
         fetch('navbar.html')
             .then(response => response.text())
@@ -143,18 +171,17 @@
                 const navbar = temp.querySelector('nav');
                 document.getElementById('navbar-container').appendChild(navbar);
             });
-        </script>
-        <script>
+    </script>
+    <script>
         // Dynamically load footer.html into the footer-container
         fetch('footer.html')
             .then(response => response.text())
             .then(html => {
-                // Extract only the <footer>...</footer> part if footer.html is a full HTML document
                 const temp = document.createElement('div');
                 temp.innerHTML = html;
                 const footer = temp.querySelector('footer');
                 document.getElementById('footer-container').appendChild(footer);
             });
-        </script>
+    </script>
 </body>
 </html>
